@@ -5,67 +5,6 @@ type AdminUser {
   lastname: String!
 }
 
-type Banner {
-  id: ID!
-  created_at: DateTime!
-  updated_at: DateTime!
-  slug: String
-  name: String
-  images(sort: String, limit: Int, start: Int, where: JSON): [UploadFile]
-}
-
-type BannerAggregator {
-  count: Int
-  totalCount: Int
-}
-
-type BannerConnection {
-  values: [Banner]
-  groupBy: BannerGroupBy
-  aggregate: BannerAggregator
-}
-
-type BannerConnectionCreated_at {
-  key: DateTime
-  connection: BannerConnection
-}
-
-type BannerConnectionId {
-  key: ID
-  connection: BannerConnection
-}
-
-type BannerConnectionName {
-  key: String
-  connection: BannerConnection
-}
-
-type BannerConnectionSlug {
-  key: String
-  connection: BannerConnection
-}
-
-type BannerConnectionUpdated_at {
-  key: DateTime
-  connection: BannerConnection
-}
-
-type BannerGroupBy {
-  id: [BannerConnectionId]
-  created_at: [BannerConnectionCreated_at]
-  updated_at: [BannerConnectionUpdated_at]
-  slug: [BannerConnectionSlug]
-  name: [BannerConnectionName]
-}
-
-input BannerInput {
-  images: [ID]
-  slug: String
-  name: String
-  created_by: ID
-  updated_by: ID
-}
-
 type BlogCategories {
   id: ID!
   created_at: DateTime!
@@ -133,144 +72,6 @@ input BlogCategoryInput {
   updated_by: ID
 }
 
-type Brand {
-  id: ID!
-  created_at: DateTime!
-  updated_at: DateTime!
-  name: String
-  description: String
-  slug: String
-  products(sort: String, limit: Int, start: Int, where: JSON): [Product]
-}
-
-type BrandAggregator {
-  count: Int
-  totalCount: Int
-}
-
-type BrandConnection {
-  values: [Brand]
-  groupBy: BrandGroupBy
-  aggregate: BrandAggregator
-}
-
-type BrandConnectionCreated_at {
-  key: DateTime
-  connection: BrandConnection
-}
-
-type BrandConnectionDescription {
-  key: String
-  connection: BrandConnection
-}
-
-type BrandConnectionId {
-  key: ID
-  connection: BrandConnection
-}
-
-type BrandConnectionName {
-  key: String
-  connection: BrandConnection
-}
-
-type BrandConnectionSlug {
-  key: String
-  connection: BrandConnection
-}
-
-type BrandConnectionUpdated_at {
-  key: DateTime
-  connection: BrandConnection
-}
-
-type BrandGroupBy {
-  id: [BrandConnectionId]
-  created_at: [BrandConnectionCreated_at]
-  updated_at: [BrandConnectionUpdated_at]
-  name: [BrandConnectionName]
-  description: [BrandConnectionDescription]
-  slug: [BrandConnectionSlug]
-}
-
-input BrandInput {
-  name: String
-  description: String
-  slug: String
-  products: [ID]
-  created_by: ID
-  updated_by: ID
-}
-
-type Collection {
-  id: ID!
-  created_at: DateTime!
-  updated_at: DateTime!
-  name: String
-  slug: String
-  description: String
-  products(sort: String, limit: Int, start: Int, where: JSON): [Product]
-}
-
-type CollectionAggregator {
-  count: Int
-  totalCount: Int
-}
-
-type CollectionConnection {
-  values: [Collection]
-  groupBy: CollectionGroupBy
-  aggregate: CollectionAggregator
-}
-
-type CollectionConnectionCreated_at {
-  key: DateTime
-  connection: CollectionConnection
-}
-
-type CollectionConnectionDescription {
-  key: String
-  connection: CollectionConnection
-}
-
-type CollectionConnectionId {
-  key: ID
-  connection: CollectionConnection
-}
-
-type CollectionConnectionName {
-  key: String
-  connection: CollectionConnection
-}
-
-type CollectionConnectionSlug {
-  key: String
-  connection: CollectionConnection
-}
-
-type CollectionConnectionUpdated_at {
-  key: DateTime
-  connection: CollectionConnection
-}
-
-type CollectionGroupBy {
-  id: [CollectionConnectionId]
-  created_at: [CollectionConnectionCreated_at]
-  updated_at: [CollectionConnectionUpdated_at]
-  name: [CollectionConnectionName]
-  slug: [CollectionConnectionSlug]
-  description: [CollectionConnectionDescription]
-}
-
-input CollectionInput {
-  name: String
-  slug: String
-  description: String
-  products: [ID]
-  created_by: ID
-  updated_by: ID
-}
-
 input ComponentVariantsVariantInput {
   images: [ID]
   price: Float
@@ -288,36 +89,12 @@ type ComponentVariantsVariants {
   images(sort: String, limit: Int, start: Int, where: JSON): [UploadFile]
 }
 
-input createBannerInput {
-  data: BannerInput
-}
-
-type createBannerPayload {
-  banner: Banner
-}
-
 input createBlogCategoryInput {
   data: BlogCategoryInput
 }
 
 type createBlogCategoryPayload {
   blogCategory: BlogCategories
-}
-
-input createBrandInput {
-  data: BrandInput
-}
-
-type createBrandPayload {
-  brand: Brand
-}
-
-input createCollectionInput {
-  data: CollectionInput
-}
-
-type createCollectionPayload {
-  collection: Collection
 }
 
 input createOrderInput {
@@ -398,36 +175,12 @@ A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the
 """
 scalar DateTime
 
-input deleteBannerInput {
-  where: InputID
-}
-
-type deleteBannerPayload {
-  banner: Banner
-}
-
 input deleteBlogCategoryInput {
   where: InputID
 }
 
 type deleteBlogCategoryPayload {
   blogCategory: BlogCategories
-}
-
-input deleteBrandInput {
-  where: InputID
-}
-
-type deleteBrandPayload {
-  brand: Brand
-}
-
-input deleteCollectionInput {
-  where: InputID
-}
-
-type deleteCollectionPayload {
-  collection: Collection
 }
 
 input deleteFileInput {
@@ -502,36 +255,10 @@ type deleteUserPayload {
   user: UsersPermissionsUser
 }
 
-input editBannerInput {
-  images: [ID]
-  slug: String
-  name: String
-  created_by: ID
-  updated_by: ID
-}
-
 input editBlogCategoryInput {
   name: String
   slug: String
   description: String
-  created_by: ID
-  updated_by: ID
-}
-
-input editBrandInput {
-  name: String
-  description: String
-  slug: String
-  products: [ID]
-  created_by: ID
-  updated_by: ID
-}
-
-input editCollectionInput {
-  name: String
-  slug: String
-  description: String
-  products: [ID]
   created_by: ID
   updated_by: ID
 }
@@ -583,11 +310,12 @@ input editPaymentInput {
 }
 
 input editPostInput {
-  name: String
-  blog_categories: [ID]
-  description: String
+  title: String
   content: String
   is_active: Boolean
+  image_feature: [ID]
+  subTitle: String
+  users_permissions_user: ID
   created_by: ID
   updated_by: ID
 }
@@ -607,21 +335,18 @@ input editProductInput {
   product_categories: [ID]
   images: [ID]
   is_featured: Boolean
-  is_hot: Boolean
   price: Float
   sale_price: Float
   vendor: String
-  brands: [ID]
   review: Int
   is_out_of_stock: Boolean
-  depot: Int
   inventory: Int
   variants: [editComponentVariantsVariantInput]
   is_active: Boolean
   is_sale: Boolean
   thumbnail: ID
-  collections: [ID]
   orders: [ID]
+  video: [ID]
   created_by: ID
   updated_by: ID
 }
@@ -655,6 +380,7 @@ input editUserInput {
   role: ID
   displayName: String
   order: ID
+  posts: [ID]
   created_by: ID
   updated_by: ID
 }
@@ -697,21 +423,12 @@ scalar JSON
 """The `Long` scalar type represents 52-bit integers"""
 scalar Long
 
-union Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | Banner | BannerConnection | BannerAggregator | BannerGroupBy | BannerConnectionId | BannerConnectionCreated_at | BannerConnectionUpdated_at | BannerConnectionSlug | BannerConnectionName | createBannerPayload | updateBannerPayload | deleteBannerPayload | BlogCategories | BlogCategoriesConnection | BlogCategoriesAggregator | BlogCategoriesGroupBy | BlogCategoriesConnectionId | BlogCategoriesConnectionCreated_at | BlogCategoriesConnectionUpdated_at | BlogCategoriesConnectionName | BlogCategoriesConnectionSlug | BlogCategoriesConnectionDescription | createBlogCategoryPayload | updateBlogCategoryPayload | deleteBlogCategoryPayload | Brand | BrandConnection | BrandAggregator | BrandGroupBy | BrandConnectionId | BrandConnectionCreated_at | BrandConnectionUpdated_at | BrandConnectionName | BrandConnectionDescription | BrandConnectionSlug | createBrandPayload | updateBrandPayload | deleteBrandPayload | Collection | CollectionConnection | CollectionAggregator | CollectionGroupBy | CollectionConnectionId | CollectionConnectionCreated_at | CollectionConnectionUpdated_at | CollectionConnectionName | CollectionConnectionSlug | CollectionConnectionDescription | createCollectionPayload | updateCollectionPayload | deleteCollectionPayload | Order | OrderConnection | OrderAggregator | OrderAggregatorSum | OrderAggregatorAvg | OrderAggregatorMin | OrderAggregatorMax | OrderGroupBy | OrderConnectionId | OrderConnectionCreated_at | OrderConnectionUpdated_at | OrderConnectionTotal | OrderConnectionUser | OrderConnectionShipping | OrderConnectionPayment | createOrderPayload | updateOrderPayload | deleteOrderPayload | Payment | PaymentConnection | PaymentAggregator | PaymentGroupBy | PaymentConnectionId | PaymentConnectionCreated_at | PaymentConnectionUpdated_at | PaymentConnectionTitle | PaymentConnectionDescription | createPaymentPayload | updatePaymentPayload | deletePaymentPayload | Post | PostConnection | PostAggregator | PostGroupBy | PostConnectionId | PostConnectionCreated_at | PostConnectionUpdated_at | PostConnectionName | PostConnectionDescription | PostConnectionContent | PostConnectionIs_active | createPostPayload | updatePostPayload | deletePostPayload | ProductCategories | ProductCategoriesConnection | ProductCategoriesAggregator | ProductCategoriesGroupBy | ProductCategoriesConnectionId | ProductCategoriesConnectionCreated_at | ProductCategoriesConnectionUpdated_at | ProductCategoriesConnectionName | ProductCategoriesConnectionSlug | ProductCategoriesConnectionDescription | ProductCategoriesConnectionFeature_image | createProductCategoryPayload | updateProductCategoryPayload | deleteProductCategoryPayload | Product | ProductConnection | ProductAggregator | ProductAggregatorSum | ProductAggregatorAvg | ProductAggregatorMin | ProductAggregatorMax | ProductGroupBy | ProductConnectionId | ProductConnectionCreated_at | ProductConnectionUpdated_at | ProductConnectionTitle | ProductConnectionIs_featured | ProductConnectionIs_hot | ProductConnectionPrice | ProductConnectionSale_price | ProductConnectionVendor | ProductConnectionReview | ProductConnectionIs_out_of_stock | ProductConnectionDepot | ProductConnectionInventory | ProductConnectionIs_active | ProductConnectionIs_sale | ProductConnectionThumbnail | createProductPayload | updateProductPayload | deleteProductPayload | Shipping | ShippingConnection | ShippingAggregator | ShippingAggregatorSum | ShippingAggregatorAvg | ShippingAggregatorMin | ShippingAggregatorMax | ShippingGroupBy | ShippingConnectionId | ShippingConnectionCreated_at | ShippingConnectionUpdated_at | ShippingConnectionTitle | ShippingConnectionDescription | ShippingConnectionCost | createShippingPayload | updateShippingPayload | deleteShippingPayload | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_at | UploadFileConnectionUpdated_at | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_metadata | deleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_at | UsersPermissionsUserConnectionUpdated_at | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | UsersPermissionsUserConnectionDisplayName | UsersPermissionsUserConnectionOrder | createUserPayload | updateUserPayload | deleteUserPayload | ComponentVariantsVariants
+union Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | BlogCategories | BlogCategoriesConnection | BlogCategoriesAggregator | BlogCategoriesGroupBy | BlogCategoriesConnectionId | BlogCategoriesConnectionCreated_at | BlogCategoriesConnectionUpdated_at | BlogCategoriesConnectionName | BlogCategoriesConnectionSlug | BlogCategoriesConnectionDescription | createBlogCategoryPayload | updateBlogCategoryPayload | deleteBlogCategoryPayload | Order | OrderConnection | OrderAggregator | OrderAggregatorSum | OrderAggregatorAvg | OrderAggregatorMin | OrderAggregatorMax | OrderGroupBy | OrderConnectionId | OrderConnectionCreated_at | OrderConnectionUpdated_at | OrderConnectionTotal | OrderConnectionUser | OrderConnectionShipping | OrderConnectionPayment | createOrderPayload | updateOrderPayload | deleteOrderPayload | Payment | PaymentConnection | PaymentAggregator | PaymentGroupBy | PaymentConnectionId | PaymentConnectionCreated_at | PaymentConnectionUpdated_at | PaymentConnectionTitle | PaymentConnectionDescription | createPaymentPayload | updatePaymentPayload | deletePaymentPayload | Post | PostConnection | PostAggregator | PostGroupBy | PostConnectionId | PostConnectionCreated_at | PostConnectionUpdated_at | PostConnectionTitle | PostConnectionContent | PostConnectionIs_active | PostConnectionSubTitle | PostConnectionUsers_permissions_user | createPostPayload | updatePostPayload | deletePostPayload | ProductCategories | ProductCategoriesConnection | ProductCategoriesAggregator | ProductCategoriesGroupBy | ProductCategoriesConnectionId | ProductCategoriesConnectionCreated_at | ProductCategoriesConnectionUpdated_at | ProductCategoriesConnectionName | ProductCategoriesConnectionSlug | ProductCategoriesConnectionDescription | ProductCategoriesConnectionFeature_image | createProductCategoryPayload | updateProductCategoryPayload | deleteProductCategoryPayload | Product | ProductConnection | ProductAggregator | ProductAggregatorSum | ProductAggregatorAvg | ProductAggregatorMin | ProductAggregatorMax | ProductGroupBy | ProductConnectionId | ProductConnectionCreated_at | ProductConnectionUpdated_at | ProductConnectionTitle | ProductConnectionIs_featured | ProductConnectionPrice | ProductConnectionSale_price | ProductConnectionVendor | ProductConnectionReview | ProductConnectionIs_out_of_stock | ProductConnectionInventory | ProductConnectionIs_active | ProductConnectionIs_sale | ProductConnectionThumbnail | createProductPayload | updateProductPayload | deleteProductPayload | Shipping | ShippingConnection | ShippingAggregator | ShippingAggregatorSum | ShippingAggregatorAvg | ShippingAggregatorMin | ShippingAggregatorMax | ShippingGroupBy | ShippingConnectionId | ShippingConnectionCreated_at | ShippingConnectionUpdated_at | ShippingConnectionTitle | ShippingConnectionDescription | ShippingConnectionCost | createShippingPayload | updateShippingPayload | deleteShippingPayload | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_at | UploadFileConnectionUpdated_at | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_metadata | deleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_at | UsersPermissionsUserConnectionUpdated_at | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | UsersPermissionsUserConnectionDisplayName | UsersPermissionsUserConnectionOrder | createUserPayload | updateUserPayload | deleteUserPayload | ComponentVariantsVariants
 
 type Mutation {
-  createBanner(input: createBannerInput): createBannerPayload
-  updateBanner(input: updateBannerInput): updateBannerPayload
-  deleteBanner(input: deleteBannerInput): deleteBannerPayload
   createBlogCategory(input: createBlogCategoryInput): createBlogCategoryPayload
   updateBlogCategory(input: updateBlogCategoryInput): updateBlogCategoryPayload
   deleteBlogCategory(input: deleteBlogCategoryInput): deleteBlogCategoryPayload
-  createBrand(input: createBrandInput): createBrandPayload
-  updateBrand(input: updateBrandInput): updateBrandPayload
-  deleteBrand(input: deleteBrandInput): deleteBrandPayload
-  createCollection(input: createCollectionInput): createCollectionPayload
-  updateCollection(input: updateCollectionInput): updateCollectionPayload
-  deleteCollection(input: deleteCollectionInput): deleteCollectionPayload
   createOrder(input: createOrderInput): createOrderPayload
   updateOrder(input: updateOrderInput): updateOrderPayload
   deleteOrder(input: deleteOrderInput): deleteOrderPayload
@@ -921,11 +638,12 @@ type Post {
   id: ID!
   created_at: DateTime!
   updated_at: DateTime!
-  name: String
-  description: String
+  title: String
   content: String
   is_active: Boolean
-  blog_categories(sort: String, limit: Int, start: Int, where: JSON): [BlogCategories]
+  subTitle: String
+  users_permissions_user: UsersPermissionsUser
+  image_feature(sort: String, limit: Int, start: Int, where: JSON): [UploadFile]
 }
 
 type PostAggregator {
@@ -949,11 +667,6 @@ type PostConnectionCreated_at {
   connection: PostConnection
 }
 
-type PostConnectionDescription {
-  key: String
-  connection: PostConnection
-}
-
 type PostConnectionId {
   key: ID
   connection: PostConnection
@@ -964,7 +677,12 @@ type PostConnectionIs_active {
   connection: PostConnection
 }
 
-type PostConnectionName {
+type PostConnectionSubTitle {
+  key: String
+  connection: PostConnection
+}
+
+type PostConnectionTitle {
   key: String
   connection: PostConnection
 }
@@ -974,22 +692,29 @@ type PostConnectionUpdated_at {
   connection: PostConnection
 }
 
+type PostConnectionUsers_permissions_user {
+  key: ID
+  connection: PostConnection
+}
+
 type PostGroupBy {
   id: [PostConnectionId]
   created_at: [PostConnectionCreated_at]
   updated_at: [PostConnectionUpdated_at]
-  name: [PostConnectionName]
-  description: [PostConnectionDescription]
+  title: [PostConnectionTitle]
   content: [PostConnectionContent]
   is_active: [PostConnectionIs_active]
+  subTitle: [PostConnectionSubTitle]
+  users_permissions_user: [PostConnectionUsers_permissions_user]
 }
 
 input PostInput {
-  name: String
-  blog_categories: [ID]
-  description: String
+  title: String
   content: String
   is_active: Boolean
+  image_feature: [ID]
+  subTitle: String
+  users_permissions_user: ID
   created_by: ID
   updated_by: ID
 }
@@ -1000,13 +725,11 @@ type Product {
   updated_at: DateTime!
   title: String
   is_featured: Boolean
-  is_hot: Boolean
   price: Float
   sale_price: Float
   vendor: String
   review: Int
   is_out_of_stock: Boolean
-  depot: Int
   inventory: Int
   variants: [ComponentVariantsVariants]
   is_active: Boolean
@@ -1014,9 +737,8 @@ type Product {
   thumbnail: UploadFile
   product_categories(sort: String, limit: Int, start: Int, where: JSON): [ProductCategories]
   images(sort: String, limit: Int, start: Int, where: JSON): [UploadFile]
-  brands(sort: String, limit: Int, start: Int, where: JSON): [Brand]
-  collections(sort: String, limit: Int, start: Int, where: JSON): [Collection]
   orders(sort: String, limit: Int, start: Int, where: JSON): [Order]
+  video(sort: String, limit: Int, start: Int, where: JSON): [UploadFile]
 }
 
 type ProductAggregator {
@@ -1032,7 +754,6 @@ type ProductAggregatorAvg {
   price: Float
   sale_price: Float
   review: Float
-  depot: Float
   inventory: Float
 }
 
@@ -1040,7 +761,6 @@ type ProductAggregatorMax {
   price: Float
   sale_price: Float
   review: Float
-  depot: Float
   inventory: Float
 }
 
@@ -1048,7 +768,6 @@ type ProductAggregatorMin {
   price: Float
   sale_price: Float
   review: Float
-  depot: Float
   inventory: Float
 }
 
@@ -1056,7 +775,6 @@ type ProductAggregatorSum {
   price: Float
   sale_price: Float
   review: Float
-  depot: Float
   inventory: Float
 }
 
@@ -1148,11 +866,6 @@ type ProductConnectionCreated_at {
   connection: ProductConnection
 }
 
-type ProductConnectionDepot {
-  key: Int
-  connection: ProductConnection
-}
-
 type ProductConnectionId {
   key: ID
   connection: ProductConnection
@@ -1169,11 +882,6 @@ type ProductConnectionIs_active {
 }
 
 type ProductConnectionIs_featured {
-  key: Boolean
-  connection: ProductConnection
-}
-
-type ProductConnectionIs_hot {
   key: Boolean
   connection: ProductConnection
 }
@@ -1229,13 +937,11 @@ type ProductGroupBy {
   updated_at: [ProductConnectionUpdated_at]
   title: [ProductConnectionTitle]
   is_featured: [ProductConnectionIs_featured]
-  is_hot: [ProductConnectionIs_hot]
   price: [ProductConnectionPrice]
   sale_price: [ProductConnectionSale_price]
   vendor: [ProductConnectionVendor]
   review: [ProductConnectionReview]
   is_out_of_stock: [ProductConnectionIs_out_of_stock]
-  depot: [ProductConnectionDepot]
   inventory: [ProductConnectionInventory]
   is_active: [ProductConnectionIs_active]
   is_sale: [ProductConnectionIs_sale]
@@ -1247,21 +953,18 @@ input ProductInput {
   product_categories: [ID]
   images: [ID]
   is_featured: Boolean
-  is_hot: Boolean
   price: Float
   sale_price: Float
   vendor: String
-  brands: [ID]
   review: Int
   is_out_of_stock: Boolean
-  depot: Int
   inventory: Int
   variants: [ComponentVariantsVariantInput]
   is_active: Boolean
   is_sale: Boolean
   thumbnail: ID
-  collections: [ID]
   orders: [ID]
+  video: [ID]
   created_by: ID
   updated_by: ID
 }
@@ -1272,18 +975,9 @@ enum PublicationState {
 }
 
 type Query {
-  banner(id: ID!): Banner
-  banners(sort: String, limit: Int, start: Int, where: JSON): [Banner]
-  bannersConnection(sort: String, limit: Int, start: Int, where: JSON): BannerConnection
   blogCategory(id: ID!): BlogCategories
   blogCategories(sort: String, limit: Int, start: Int, where: JSON): [BlogCategories]
   blogCategoriesConnection(sort: String, limit: Int, start: Int, where: JSON): BlogCategoriesConnection
-  brand(id: ID!): Brand
-  brands(sort: String, limit: Int, start: Int, where: JSON): [Brand]
-  brandsConnection(sort: String, limit: Int, start: Int, where: JSON): BrandConnection
-  collection(id: ID!): Collection
-  collections(sort: String, limit: Int, start: Int, where: JSON): [Collection]
-  collectionsConnection(sort: String, limit: Int, start: Int, where: JSON): CollectionConnection
   order(id: ID!): Order
   orders(sort: String, limit: Int, start: Int, where: JSON): [Order]
   ordersConnection(sort: String, limit: Int, start: Int, where: JSON): OrderConnection
@@ -1417,15 +1111,6 @@ input ShippingInput {
 """A time string with format: HH:mm:ss.SSS"""
 scalar Time
 
-input updateBannerInput {
-  where: InputID
-  data: editBannerInput
-}
-
-type updateBannerPayload {
-  banner: Banner
-}
-
 input updateBlogCategoryInput {
   where: InputID
   data: editBlogCategoryInput
@@ -1433,24 +1118,6 @@ input updateBlogCategoryInput {
 
 type updateBlogCategoryPayload {
   blogCategory: BlogCategories
-}
-
-input updateBrandInput {
-  where: InputID
-  data: editBrandInput
-}
-
-type updateBrandPayload {
-  brand: Brand
-}
-
-input updateCollectionInput {
-  where: InputID
-  data: editCollectionInput
-}
-
-type updateCollectionPayload {
-  collection: Collection
 }
 
 input updateOrderInput {
@@ -1704,6 +1371,7 @@ input UserInput {
   role: ID
   displayName: String!
   order: ID
+  posts: [ID]
   created_by: ID
   updated_by: ID
 }
@@ -1814,6 +1482,7 @@ type UsersPermissionsUser {
   role: UsersPermissionsRole
   displayName: String!
   order: Order
+  posts(sort: String, limit: Int, start: Int, where: JSON): [Post]
 }
 
 type UsersPermissionsUserAggregator {
