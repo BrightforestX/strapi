@@ -1,12 +1,10 @@
 'use strict';
 
-
 /**
- * Lifecycle callbacks for the `post` model.
+ * Lifecycle callbacks for the `jobs` model.
  */
 
 module.exports = {
-
   // Before saving a value.
   // Fired before an `insert` or `update` query.
   // beforeSave: async (model, attrs, options) => {},

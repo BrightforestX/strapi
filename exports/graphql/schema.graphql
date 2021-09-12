@@ -97,6 +97,14 @@ type createBlogCategoryPayload {
   blogCategory: BlogCategories
 }
 
+input createJobInput {
+  data: JobInput
+}
+
+type createJobPayload {
+  job: Jobs
+}
+
 input createOrderInput {
   data: OrderInput
 }
@@ -189,6 +197,14 @@ input deleteFileInput {
 
 type deleteFilePayload {
   file: UploadFile
+}
+
+input deleteJobInput {
+  where: InputID
+}
+
+type deleteJobPayload {
+  job: Jobs
 }
 
 input deleteOrderInput {
@@ -288,6 +304,14 @@ input editFileInput {
   provider: String
   provider_metadata: JSON
   related: [ID]
+  created_by: ID
+  updated_by: ID
+}
+
+input editJobInput {
+  name: String
+  slug: String
+  description: String
   created_by: ID
   updated_by: ID
 }
@@ -415,6 +439,73 @@ input InputID {
   id: ID!
 }
 
+input JobInput {
+  name: String
+  slug: String
+  description: String
+  created_by: ID
+  updated_by: ID
+}
+
+type Jobs {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  name: String
+  slug: String
+  description: String
+}
+
+type JobsAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type JobsConnection {
+  values: [Jobs]
+  groupBy: JobsGroupBy
+  aggregate: JobsAggregator
+}
+
+type JobsConnectionCreated_at {
+  key: DateTime
+  connection: JobsConnection
+}
+
+type JobsConnectionDescription {
+  key: String
+  connection: JobsConnection
+}
+
+type JobsConnectionId {
+  key: ID
+  connection: JobsConnection
+}
+
+type JobsConnectionName {
+  key: String
+  connection: JobsConnection
+}
+
+type JobsConnectionSlug {
+  key: String
+  connection: JobsConnection
+}
+
+type JobsConnectionUpdated_at {
+  key: DateTime
+  connection: JobsConnection
+}
+
+type JobsGroupBy {
+  id: [JobsConnectionId]
+  created_at: [JobsConnectionCreated_at]
+  updated_at: [JobsConnectionUpdated_at]
+  name: [JobsConnectionName]
+  slug: [JobsConnectionSlug]
+  description: [JobsConnectionDescription]
+}
+
 """
 The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
 """
@@ -423,12 +514,15 @@ scalar JSON
 """The `Long` scalar type represents 52-bit integers"""
 scalar Long
 
-union Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | BlogCategories | BlogCategoriesConnection | BlogCategoriesAggregator | BlogCategoriesGroupBy | BlogCategoriesConnectionId | BlogCategoriesConnectionCreated_at | BlogCategoriesConnectionUpdated_at | BlogCategoriesConnectionName | BlogCategoriesConnectionSlug | BlogCategoriesConnectionDescription | createBlogCategoryPayload | updateBlogCategoryPayload | deleteBlogCategoryPayload | Order | OrderConnection | OrderAggregator | OrderAggregatorSum | OrderAggregatorAvg | OrderAggregatorMin | OrderAggregatorMax | OrderGroupBy | OrderConnectionId | OrderConnectionCreated_at | OrderConnectionUpdated_at | OrderConnectionTotal | OrderConnectionUser | OrderConnectionShipping | OrderConnectionPayment | createOrderPayload | updateOrderPayload | deleteOrderPayload | Payment | PaymentConnection | PaymentAggregator | PaymentGroupBy | PaymentConnectionId | PaymentConnectionCreated_at | PaymentConnectionUpdated_at | PaymentConnectionTitle | PaymentConnectionDescription | createPaymentPayload | updatePaymentPayload | deletePaymentPayload | Post | PostConnection | PostAggregator | PostGroupBy | PostConnectionId | PostConnectionCreated_at | PostConnectionUpdated_at | PostConnectionTitle | PostConnectionContent | PostConnectionIs_active | PostConnectionSubTitle | PostConnectionUsers_permissions_user | createPostPayload | updatePostPayload | deletePostPayload | ProductCategories | ProductCategoriesConnection | ProductCategoriesAggregator | ProductCategoriesGroupBy | ProductCategoriesConnectionId | ProductCategoriesConnectionCreated_at | ProductCategoriesConnectionUpdated_at | ProductCategoriesConnectionName | ProductCategoriesConnectionSlug | ProductCategoriesConnectionDescription | ProductCategoriesConnectionFeature_image | createProductCategoryPayload | updateProductCategoryPayload | deleteProductCategoryPayload | Product | ProductConnection | ProductAggregator | ProductAggregatorSum | ProductAggregatorAvg | ProductAggregatorMin | ProductAggregatorMax | ProductGroupBy | ProductConnectionId | ProductConnectionCreated_at | ProductConnectionUpdated_at | ProductConnectionTitle | ProductConnectionIs_featured | ProductConnectionPrice | ProductConnectionSale_price | ProductConnectionVendor | ProductConnectionReview | ProductConnectionIs_out_of_stock | ProductConnectionInventory | ProductConnectionIs_active | ProductConnectionIs_sale | ProductConnectionThumbnail | createProductPayload | updateProductPayload | deleteProductPayload | Shipping | ShippingConnection | ShippingAggregator | ShippingAggregatorSum | ShippingAggregatorAvg | ShippingAggregatorMin | ShippingAggregatorMax | ShippingGroupBy | ShippingConnectionId | ShippingConnectionCreated_at | ShippingConnectionUpdated_at | ShippingConnectionTitle | ShippingConnectionDescription | ShippingConnectionCost | createShippingPayload | updateShippingPayload | deleteShippingPayload | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_at | UploadFileConnectionUpdated_at | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_metadata | deleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_at | UsersPermissionsUserConnectionUpdated_at | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | UsersPermissionsUserConnectionDisplayName | UsersPermissionsUserConnectionOrder | createUserPayload | updateUserPayload | deleteUserPayload | ComponentVariantsVariants
+union Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | BlogCategories | BlogCategoriesConnection | BlogCategoriesAggregator | BlogCategoriesGroupBy | BlogCategoriesConnectionId | BlogCategoriesConnectionCreated_at | BlogCategoriesConnectionUpdated_at | BlogCategoriesConnectionName | BlogCategoriesConnectionSlug | BlogCategoriesConnectionDescription | createBlogCategoryPayload | updateBlogCategoryPayload | deleteBlogCategoryPayload | Jobs | JobsConnection | JobsAggregator | JobsGroupBy | JobsConnectionId | JobsConnectionCreated_at | JobsConnectionUpdated_at | JobsConnectionName | JobsConnectionSlug | JobsConnectionDescription | createJobPayload | updateJobPayload | deleteJobPayload | Order | OrderConnection | OrderAggregator | OrderAggregatorSum | OrderAggregatorAvg | OrderAggregatorMin | OrderAggregatorMax | OrderGroupBy | OrderConnectionId | OrderConnectionCreated_at | OrderConnectionUpdated_at | OrderConnectionTotal | OrderConnectionUser | OrderConnectionShipping | OrderConnectionPayment | createOrderPayload | updateOrderPayload | deleteOrderPayload | Payment | PaymentConnection | PaymentAggregator | PaymentGroupBy | PaymentConnectionId | PaymentConnectionCreated_at | PaymentConnectionUpdated_at | PaymentConnectionTitle | PaymentConnectionDescription | createPaymentPayload | updatePaymentPayload | deletePaymentPayload | Post | PostConnection | PostAggregator | PostGroupBy | PostConnectionId | PostConnectionCreated_at | PostConnectionUpdated_at | PostConnectionTitle | PostConnectionContent | PostConnectionIs_active | PostConnectionSubTitle | PostConnectionUsers_permissions_user | createPostPayload | updatePostPayload | deletePostPayload | ProductCategories | ProductCategoriesConnection | ProductCategoriesAggregator | ProductCategoriesGroupBy | ProductCategoriesConnectionId | ProductCategoriesConnectionCreated_at | ProductCategoriesConnectionUpdated_at | ProductCategoriesConnectionName | ProductCategoriesConnectionSlug | ProductCategoriesConnectionDescription | ProductCategoriesConnectionFeature_image | createProductCategoryPayload | updateProductCategoryPayload | deleteProductCategoryPayload | Product | ProductConnection | ProductAggregator | ProductAggregatorSum | ProductAggregatorAvg | ProductAggregatorMin | ProductAggregatorMax | ProductGroupBy | ProductConnectionId | ProductConnectionCreated_at | ProductConnectionUpdated_at | ProductConnectionTitle | ProductConnectionIs_featured | ProductConnectionPrice | ProductConnectionSale_price | ProductConnectionVendor | ProductConnectionReview | ProductConnectionIs_out_of_stock | ProductConnectionInventory | ProductConnectionIs_active | ProductConnectionIs_sale | ProductConnectionThumbnail | createProductPayload | updateProductPayload | deleteProductPayload | Shipping | ShippingConnection | ShippingAggregator | ShippingAggregatorSum | ShippingAggregatorAvg | ShippingAggregatorMin | ShippingAggregatorMax | ShippingGroupBy | ShippingConnectionId | ShippingConnectionCreated_at | ShippingConnectionUpdated_at | ShippingConnectionTitle | ShippingConnectionDescription | ShippingConnectionCost | createShippingPayload | updateShippingPayload | deleteShippingPayload | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_at | UploadFileConnectionUpdated_at | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_metadata | deleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_at | UsersPermissionsUserConnectionUpdated_at | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | UsersPermissionsUserConnectionDisplayName | UsersPermissionsUserConnectionOrder | createUserPayload | updateUserPayload | deleteUserPayload | ComponentVariantsVariants
 
 type Mutation {
   createBlogCategory(input: createBlogCategoryInput): createBlogCategoryPayload
   updateBlogCategory(input: updateBlogCategoryInput): updateBlogCategoryPayload
   deleteBlogCategory(input: deleteBlogCategoryInput): deleteBlogCategoryPayload
+  createJob(input: createJobInput): createJobPayload
+  updateJob(input: updateJobInput): updateJobPayload
+  deleteJob(input: deleteJobInput): deleteJobPayload
   createOrder(input: createOrderInput): createOrderPayload
   updateOrder(input: updateOrderInput): updateOrderPayload
   deleteOrder(input: deleteOrderInput): deleteOrderPayload
@@ -978,6 +1072,9 @@ type Query {
   blogCategory(id: ID!): BlogCategories
   blogCategories(sort: String, limit: Int, start: Int, where: JSON): [BlogCategories]
   blogCategoriesConnection(sort: String, limit: Int, start: Int, where: JSON): BlogCategoriesConnection
+  job(id: ID!): Jobs
+  jobs(sort: String, limit: Int, start: Int, where: JSON): [Jobs]
+  jobsConnection(sort: String, limit: Int, start: Int, where: JSON): JobsConnection
   order(id: ID!): Order
   orders(sort: String, limit: Int, start: Int, where: JSON): [Order]
   ordersConnection(sort: String, limit: Int, start: Int, where: JSON): OrderConnection
@@ -1118,6 +1215,15 @@ input updateBlogCategoryInput {
 
 type updateBlogCategoryPayload {
   blogCategory: BlogCategories
+}
+
+input updateJobInput {
+  where: InputID
+  data: editJobInput
+}
+
+type updateJobPayload {
+  job: Jobs
 }
 
 input updateOrderInput {

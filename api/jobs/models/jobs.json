@@ -1,0 +1,22 @@
+{
+  "connection": "default",
+  "collectionName": "jobs",
+  "info": {
+    "name": "jobs"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    }
+  }
+}
