@@ -8,6 +8,7 @@
  const { sanitizeEntity } = require('strapi-utils');
 
  module.exports = {
+   /*
    async find(ctx) {
      let entities;
      if (ctx.query._q) {
@@ -18,5 +19,7 @@
  
      return entities.map(entity => sanitizeEntity(entity, { model: strapi.models.products }));
    },
+   */
+
  };
  
